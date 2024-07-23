@@ -15,7 +15,6 @@ import 'package:toyota/pages/car/dealer_page.dart';
 import 'package:toyota/pages/car/new_cars.dart';
 import 'package:toyota/pages/detail/detail_page.dart';
 import 'package:toyota/pages/menu/contact.dart';
-import 'package:toyota/pages/menu/menu.dart';
 import 'package:toyota/pages/menu/qa_page.dart';
 import 'package:toyota/pages/profile/profile_edit.dart';
 import 'package:toyota/shared/main_scaffold.dart';
@@ -38,7 +37,6 @@ final Map<String, Widget Function(BuildContext)> routes = {
   ProfileEdit.routeName: (context) => ProfileEdit(),
   RecoveryPage.routeName: (context) => RecoveryPage(),
   DealerPage.routeName: (context) => DealerPage(),
-  Menu.routeName: (context) => Menu(),
   QaPage.routeName: (context) => QaPage(),
   Contact.routeName: (context) => Contact(),
 };

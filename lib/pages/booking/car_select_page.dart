@@ -10,6 +10,7 @@ import 'package:toyota/shared/components/custom_appbar.dart';
 import 'package:toyota/shared/components/custom_button.dart';
 import 'package:toyota/shared/general_container.dart';
 import 'package:toyota/utils/colors.dart';
+import 'package:toyota/utils/constants.dart';
 import 'package:toyota/utils/spacer.dart';
 import 'package:toyota/utils/text_styles.dart';
 import 'package:toyota/utils/utils.dart';
@@ -37,8 +38,8 @@ class _CarSelectPageState extends State<CarSelectPage> {
     });
   }
 
-  onTap(CarResponseData car) {
-    final value = ModalRoute.of(context)?.settings.arguments as String?;
+  onTap(CarResponseData car, {String? type}) {
+    final value = ModalRoute.of(context)?.settings.arguments as String? ?? type;
     switch (value) {
       case "booking":
         Navigator.pushNamed(
@@ -61,6 +62,48 @@ class _CarSelectPageState extends State<CarSelectPage> {
           arguments: car,
         );
         break;
+      case null:
+        showDialog(
+          context: context,
+          builder: (_) {
+            return AlertDialog(
+              backgroundColor: GeneralColors.primaryBGColor,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              title: Text("Үйлчилгээ сонгоно уу?"),
+              titleTextStyle: GeneralTextStyles.titleText(context),
+              content: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: services
+                    .map(
+                      (e) => CustomButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                          onTap(car, type: e.value);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(10)),
+                          padding: EdgeInsets.all(10),
+                          margin: EdgeInsets.symmetric(vertical: 6),
+                          child: Row(
+                            children: [
+                              Image.asset(
+                                e.icon,
+                                width: 25,
+                                height: 25,
+                              ),
+                              HSpacer.sm(),
+                              Expanded(child: Text(e.title)),
+                            ],
+                          ),
+                        ),
+                      ),
+                    )
+                    .toList(),
+              ),
+            );
+          },
+        );
       default:
     }
   }

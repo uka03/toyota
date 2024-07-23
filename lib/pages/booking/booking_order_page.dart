@@ -140,7 +140,7 @@ class _BookingOrderPageState extends State<BookingOrderPage> {
                   use24HourFormat: true,
                   currentTimeAnimation: false,
                   style: TimePlannerStyle(
-                    cellHeight: 80,
+                    cellHeight: 50,
                     cellWidth: (MediaQuery.of(context).size.width * 0.70).toInt(),
                     dividerColor: Colors.black,
                     showScrollBar: false,

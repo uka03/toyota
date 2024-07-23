@@ -168,12 +168,14 @@ class _BookingPageState extends State<BookingPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Container(
-                                    width: 100,
-                                    height: 4,
-                                    decoration: BoxDecoration(
-                                      color: GeneralColors.grayColor,
-                                      borderRadius: BorderRadius.circular(10),
+                                  Center(
+                                    child: Container(
+                                      width: 100,
+                                      height: 4,
+                                      decoration: BoxDecoration(
+                                        color: GeneralColors.grayColor,
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
                                     ),
                                   ),
                                   Row(

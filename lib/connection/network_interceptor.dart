@@ -7,7 +7,6 @@ class NetworkInterceptor extends Interceptor {
   Future<void> onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? value = prefs.getString("token");
-    print(value);
     if (value != null) {
       options.headers['Authorization'] = "Bearer $value";
     }

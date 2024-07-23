@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toyota/pages/auth/provider/auth_provider.dart';
 import 'package:toyota/pages/home/home_page.dart';
-import 'package:toyota/pages/menu/menu.dart';
 import 'package:toyota/pages/profile/profile_page.dart';
 import 'package:toyota/pages/service/service_page.dart';
 import 'package:toyota/shared/components/custom_appbar.dart';
@@ -39,21 +38,7 @@ class _MainScaffoldState extends State<MainScaffold> {
       ];
       return Scaffold(
         backgroundColor: GeneralColors.whiteColor,
-        appBar: CustomAppbar(
-          actions: [
-            provider.selectedIndex == 2
-                ? IconButton(
-                    icon: Icon(
-                      Icons.menu,
-                      size: 30,
-                    ),
-                    onPressed: () {
-                      Navigator.pushNamed(context, Menu.routeName);
-                    },
-                  )
-                : SizedBox(),
-          ],
-        ),
+        appBar: CustomAppbar(),
         body: SafeArea(
           child: widgets[provider.selectedIndex],
         ),

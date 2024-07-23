@@ -134,8 +134,8 @@ class _ProfileEditState extends State<ProfileEdit> {
                       ),
                       child: Image.asset(
                         "assets/icons/ic_user.png",
-                        width: 120,
-                        height: 120,
+                        width: 80,
+                        height: 80,
                       ),
                     ),
                   ),
@@ -193,18 +193,25 @@ class ProfileInput extends StatelessWidget {
     required this.label,
     required this.controller,
     this.enabled = true,
+    this.isPassword = false,
     this.keyboardType,
+    this.observeText = false,
+    this.eyeClick,
   });
 
   final String label;
   final bool enabled;
   final TextEditingController controller;
   final TextInputType? keyboardType;
+  final bool isPassword;
+  final bool observeText;
+  final Function? eyeClick;
+
   final border = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(50),
+    borderRadius: BorderRadius.circular(10),
   );
   final disableBorder = OutlineInputBorder(
-    borderRadius: BorderRadius.circular(50),
+    borderRadius: BorderRadius.circular(10),
     borderSide: BorderSide(
       color: GeneralColors.grayColor,
     ),
@@ -216,6 +223,7 @@ class ProfileInput extends StatelessWidget {
       enabled: enabled,
       controller: controller,
       keyboardType: keyboardType,
+      obscureText: observeText,
       validator: (value) {
         if (enabled && (value == null || value.isEmpty)) {
           return "Заавал оруулна уу";
@@ -235,6 +243,14 @@ class ProfileInput extends StatelessWidget {
         enabledBorder: border,
         disabledBorder: disableBorder,
         focusedErrorBorder: border,
+        suffixIcon: IconButton(
+          icon: Icon(Icons.remove_red_eye_outlined),
+          onPressed: () {
+            if (eyeClick != null) {
+              eyeClick!();
+            }
+          },
+        ),
       ),
     );
   }

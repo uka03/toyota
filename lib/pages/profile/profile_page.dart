@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:toyota/connection/model/car_response.dart';
+import 'package:toyota/pages/auth/login_page.dart';
+import 'package:toyota/pages/auth/password_change.dart';
+import 'package:toyota/pages/auth/provider/auth_provider.dart';
 import 'package:toyota/pages/booking/booking_order_page.dart';
 import 'package:toyota/pages/booking/booking_page.dart';
 import 'package:toyota/pages/booking/car_select_page.dart';
 import 'package:toyota/pages/booking/history_page.dart';
-import 'package:toyota/pages/home/home_page.dart';
+import 'package:toyota/pages/menu/contact.dart';
+import 'package:toyota/pages/menu/menu.dart';
+import 'package:toyota/pages/menu/qa_page.dart';
 import 'package:toyota/pages/profile/profile_edit.dart';
 import 'package:toyota/pages/profile/provider/profile_provider.dart';
 import 'package:toyota/shared/components/custom_button.dart';
+import 'package:toyota/shared/components/primary_button.dart';
+import 'package:toyota/shared/components/secondary_button.dart';
 import 'package:toyota/shared/general_container.dart';
+import 'package:toyota/shared/provider/navigator_provider.dart';
 import 'package:toyota/utils/colors.dart';
 import 'package:toyota/utils/constants.dart';
 import 'package:toyota/utils/spacer.dart';
@@ -25,10 +33,16 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   late final ProfileProvider _profileProvider;
+  late final NavigatorProvider navigatorProvider;
+  late final AuthProvider authProvider;
   @override
   void initState() {
     super.initState();
     _profileProvider = Provider.of<ProfileProvider>(context, listen: false);
+
+    navigatorProvider = Provider.of<NavigatorProvider>(context, listen: false);
+    authProvider = Provider.of<AuthProvider>(context, listen: false);
+
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       showLoader();
       await _profileProvider.getCars();
@@ -65,6 +79,69 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  onLogout() {
+    showDialog(
+      context: context,
+      builder: (_) {
+        return AlertDialog(
+          backgroundColor: GeneralColors.primaryBGColor,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          title: Text(
+            "Та гарахдаа итгэлтэй байна уу!",
+            textAlign: TextAlign.center,
+          ),
+          titleTextStyle: GeneralTextStyles.titleText(context, fontSize: 18),
+          actions: [
+            Row(
+              children: [
+                Expanded(
+                  child: SecondaryButton(
+                    borderRadius: 4,
+                    height: 45,
+                    text: Text(
+                      "Үгүй",
+                      style: GeneralTextStyles.titleText(
+                        context,
+                        textColor: GeneralColors.blackColor,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                ),
+                HSpacer(),
+                Expanded(
+                  child: PrimaryButton(
+                    borderRadius: 4,
+                    height: 45,
+                    text: Text(
+                      "Тийм",
+                      style: GeneralTextStyles.titleText(
+                        context,
+                        textColor: GeneralColors.whiteColor,
+                      ),
+                    ),
+                    onPressed: () async {
+                      final response = await authProvider.logout();
+                      if (response) {
+                        if (mounted) {
+                          navigatorProvider.changeIndex(0);
+                          Navigator.popUntil(context, (route) => route.isFirst);
+                          Navigator.pushReplacementNamed(context, LoginPage.routeName);
+                        }
+                      }
+                    },
+                  ),
+                )
+              ],
+            )
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Consumer<ProfileProvider>(builder: (context, provider, _) {
@@ -76,84 +153,26 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: GeneralColors.secondaryColor,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Image.asset(
-                        "assets/icons/ic_user.png",
-                        width: 60,
-                        height: 60,
-                      ),
-                    ),
-                    HSpacer(),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            provider.user?.firstName ?? "",
-                            style: GeneralTextStyles.titleText(
-                              context,
-                              fontSize: 18,
-                            ),
-                          ),
-                          provider.user?.lastName?.isNotEmpty == true
-                              ? Text(
-                                  provider.user?.lastName ?? "",
-                                  style: GeneralTextStyles.bodyText(
-                                    context,
-                                    fontSize: 16,
-                                    textColor: GeneralColors.grayTextColor,
-                                  ),
-                                )
-                              : Text(
-                                  provider.user?.vat ?? "",
-                                  style: GeneralTextStyles.titleText(context),
-                                )
-                        ],
-                      ),
-                    ),
-                    HSpacer(),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pushNamed(
-                          context,
-                          ProfileEdit.routeName,
-                        );
-                      },
-                      icon: Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(8)),
-                        child: Icon(
-                          Icons.edit,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                VSpacer(),
-                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       "Бүртгэлтэй машин",
                       style: GeneralTextStyles.titleText(context, fontSize: 20),
                     ),
-                    provider.cars.length > 4
+                    3 > 2
                         ? CustomButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushNamed(
+                                context,
+                                CarSelectPage.routeName,
+                              );
+                            },
                             child: Text(
                               "Бүгд",
                               style: GeneralTextStyles.bodyText(
                                 context,
                                 textColor: GeneralColors.primaryColor,
+                                fontSize: 16,
                               ),
                             ),
                           )
@@ -162,7 +181,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 VSpacer(),
                 GridView.builder(
-                  itemCount: provider.cars.length > 4 ? 4 : provider.cars.length,
+                  itemCount: provider.cars.length > 2 ? 2 : provider.cars.length,
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -221,22 +240,47 @@ class _ProfilePageState extends State<ProfilePage> {
                   },
                 ),
                 VSpacer(),
-                Text(
-                  'Мэдээ Мэдээлэл',
-                  style: GeneralTextStyles.titleText(context, fontSize: 20),
+                MenuItem(
+                  icon: Icons.edit_outlined,
+                  title: "Мэдээлэл шинэчлэх",
+                  onPressed: () {
+                    Navigator.pushNamed(context, ProfileEdit.routeName);
+                  },
                 ),
                 VSpacer(),
-                SizedBox(
-                  height: 170,
-                  child: ListView.separated(
-                    itemCount: provider.news.length,
-                    scrollDirection: Axis.horizontal,
-                    separatorBuilder: (context, index) => HSpacer(),
-                    itemBuilder: (context, index) {
-                      final news = provider.news[index];
-                      return NewsItem(news: news);
-                    },
-                  ),
+                MenuItem(
+                  icon: Icons.lock_outline,
+                  title: "Нууц үг солих",
+                  onPressed: () {
+                    Navigator.pushNamed(context, PasswordChange.routeName);
+                  },
+                ),
+                VSpacer(),
+                MenuItem(
+                  icon: Icons.question_answer_outlined,
+                  title: "Түгээмэл асуулт, хариулт",
+                  onPressed: () {
+                    Navigator.pushNamed(context, QaPage.routeName);
+                  },
+                ),
+                VSpacer(),
+                MenuItem(
+                  icon: Icons.quick_contacts_dialer_outlined,
+                  title: "Бидэнтэй холбогдох",
+                  onPressed: () {
+                    Navigator.pushNamed(context, Contact.routeName);
+                  },
+                ),
+                VSpacer(),
+                VSpacer(),
+                VSpacer(),
+                MenuItem(
+                  icon: Icons.logout_outlined,
+                  title: "Системээс гарах",
+                  isLogout: true,
+                  onPressed: () {
+                    onLogout();
+                  },
                 ),
               ],
             ),

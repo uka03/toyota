@@ -30,7 +30,7 @@ class BannerCarousel extends StatelessWidget {
             viewportFraction: 0.93,
             enlargeCenterPage: false,
             initialPage: 0,
-            height: 250,
+            height: 200,
             enableInfiniteScroll: true,
             autoPlay: false,
             disableCenter: true,

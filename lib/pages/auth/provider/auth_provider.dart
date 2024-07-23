@@ -17,9 +17,9 @@ class AuthProvider extends ChangeNotifier {
     if (response.status?.toLowerCase() == "success") {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setString("token", response.data?.accessToken ?? "");
+      await prefs.setString("phone", phone);
+      await prefs.setString("password", password);
       if (remember) {
-        await prefs.setString("phone", phone);
-        await prefs.setString("password", password);
         await prefs.setBool("saved", true);
       } else {
         await prefs.remove("phone");

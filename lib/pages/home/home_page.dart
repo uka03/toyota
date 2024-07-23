@@ -211,11 +211,11 @@ class ServiceItem extends StatelessWidget {
         decoration: BoxDecoration(
           border: Border.all(
             width: 1,
-            color: service.index == 1 ? GeneralColors.primaryColor : GeneralColors.grayColor,
+            color: GeneralColors.grayColor,
           ),
           borderRadius: BorderRadius.circular(20),
         ),
-        width: 160,
+        width: 140,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -224,14 +224,14 @@ class ServiceItem extends StatelessWidget {
               width: 40,
               height: 40,
               fit: BoxFit.cover,
-              color: service.index == 1 ? GeneralColors.primaryColor : GeneralColors.grayColor,
+              color: GeneralColors.grayColor,
             ),
             Text(
               service.title,
               textAlign: TextAlign.center,
               style: GeneralTextStyles.bodyText(
                 context,
-                textColor: service.index == 1 ? GeneralColors.primaryColor : GeneralColors.blackColor,
+                textColor: GeneralColors.blackColor,
               ),
             ),
           ],
