@@ -243,14 +243,16 @@ class ProfileInput extends StatelessWidget {
         enabledBorder: border,
         disabledBorder: disableBorder,
         focusedErrorBorder: border,
-        suffixIcon: IconButton(
-          icon: Icon(Icons.remove_red_eye_outlined),
-          onPressed: () {
-            if (eyeClick != null) {
-              eyeClick!();
-            }
-          },
-        ),
+        suffixIcon: isPassword
+            ? IconButton(
+                icon: Icon(Icons.remove_red_eye_outlined),
+                onPressed: () {
+                  if (eyeClick != null) {
+                    eyeClick!();
+                  }
+                },
+              )
+            : null,
       ),
     );
   }

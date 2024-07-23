@@ -159,7 +159,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       "Бүртгэлтэй машин",
                       style: GeneralTextStyles.titleText(context, fontSize: 20),
                     ),
-                    3 > 2
+                    provider.cars.length > 2
                         ? CustomButton(
                             onPressed: () {
                               Navigator.pushNamed(

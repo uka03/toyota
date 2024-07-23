@@ -49,21 +49,106 @@ class _BookingOrderPageState extends State<BookingOrderPage> {
         minutesDuration: (60 * (orderDuration <= 0 ? 0.5 : orderDuration)).toInt(),
         color: _getOrderBackgroundColor(order),
         dateTime: TimePlannerDateTime(day: 0, hour: time?.hour ?? 9, minutes: time?.minute ?? 0),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  _getStatusText(order),
-                  style: GeneralTextStyles.titleText(
-                    context,
-                    textColor: GeneralColors.whiteColor,
-                    fontSize: 12,
+        child: InkWell(
+          onDoubleTap: () {
+            print("object");
+            showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                backgroundColor: GeneralColors.primaryColor,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  side: BorderSide(
+                    color: GeneralColors.whiteColor,
+                  ),
+                ),
+                actionsAlignment: MainAxisAlignment.center,
+                contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                insetPadding: EdgeInsets.zero,
+                content: Container(
+                  decoration: BoxDecoration(),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "Та цагаа цуцлах уу?",
+                        style: GeneralTextStyles.titleText(
+                          context,
+                          textColor: GeneralColors.whiteColor,
+                          fontSize: 16,
+                        ),
+                      ),
+                      VSpacer(),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: GeneralColors.whiteColor),
+                                color: GeneralColors.whiteColor.withOpacity(0.5),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Үгүй",
+                                  style: GeneralTextStyles.titleText(
+                                    context,
+                                    fontSize: 14,
+                                    textColor: GeneralColors.whiteColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          HSpacer(),
+                          Expanded(
+                            child: Container(
+                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                border: Border.all(color: GeneralColors.whiteColor),
+                                color: GeneralColors.whiteColor,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Цуцлах",
+                                  style: GeneralTextStyles.titleText(
+                                    context,
+                                    fontSize: 14,
+                                    textColor: GeneralColors.blackColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
-            ],
+            );
+          },
+          child: SizedBox(
+            height: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      _getStatusText(order),
+                      style: GeneralTextStyles.titleText(
+                        context,
+                        textColor: GeneralColors.whiteColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
       );

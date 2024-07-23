@@ -94,7 +94,7 @@ class _CustomExpandableTileState extends State<CustomExpandableTile> {
               ]
             : [],
         color: _isExpanded ? Color.fromARGB(255, 229, 229, 229) : GeneralColors.whiteColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

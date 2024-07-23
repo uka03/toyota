@@ -87,7 +87,7 @@ class _QaPageState extends State<QaPage> {
                                 Colors.white,
                                 Colors.white,
                               ]),
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       duration: Duration(milliseconds: 200),
                       child: Row(
