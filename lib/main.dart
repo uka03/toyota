@@ -58,7 +58,7 @@ class _MyAppState extends State<MyApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Toyota - TavanBogd',
-        initialRoute: "/login",
+        initialRoute: "/splash_screen",
         theme: ThemeData(
           useMaterial3: true,
         ),

@@ -52,11 +52,7 @@ class _LoginPageState extends State<LoginPage> {
 
   getLoginInfo() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    final token = prefs.getString("token");
     final isRemember = prefs.getBool("saved") ?? false;
-    if (token?.isNotEmpty == true && mounted) {
-      Navigator.pushReplacementNamed(context, MainScaffold.routeName);
-    }
     if (isRemember) {
       final phone = prefs.getString("phone");
       _phoneController.text = phone ?? "";

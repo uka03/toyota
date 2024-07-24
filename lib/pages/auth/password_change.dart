@@ -93,7 +93,7 @@ class _PasswordChangeState extends State<PasswordChange> {
               ),
               VSpacer(),
               PrimaryButton(
-                backgroundColor: GeneralColors.secondaryButton,
+                backgroundColor: GeneralColors.primaryColor,
                 borderRadius: 10,
                 height: 50,
                 text: Text(

@@ -17,6 +17,7 @@ import 'package:toyota/pages/detail/detail_page.dart';
 import 'package:toyota/pages/menu/contact.dart';
 import 'package:toyota/pages/menu/qa_page.dart';
 import 'package:toyota/pages/profile/profile_edit.dart';
+import 'package:toyota/pages/splash_screen.dart';
 import 'package:toyota/shared/main_scaffold.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
@@ -39,4 +40,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   DealerPage.routeName: (context) => DealerPage(),
   QaPage.routeName: (context) => QaPage(),
   Contact.routeName: (context) => Contact(),
+  SplashScreen.routeName: (context) => SplashScreen(),
 };
