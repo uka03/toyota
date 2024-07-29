@@ -51,7 +51,6 @@ class _BookingOrderPageState extends State<BookingOrderPage> {
         dateTime: TimePlannerDateTime(day: 0, hour: time?.hour ?? 9, minutes: time?.minute ?? 0),
         child: InkWell(
           onDoubleTap: () {
-            print("object");
             showDialog(
               context: context,
               builder: (context) => AlertDialog(
@@ -82,20 +81,25 @@ class _BookingOrderPageState extends State<BookingOrderPage> {
                       Row(
                         children: [
                           Expanded(
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 6),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                border: Border.all(color: GeneralColors.whiteColor),
-                                color: GeneralColors.whiteColor.withOpacity(0.5),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "Үгүй",
-                                  style: GeneralTextStyles.titleText(
-                                    context,
-                                    fontSize: 14,
-                                    textColor: GeneralColors.whiteColor,
+                            child: InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: Container(
+                                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(color: GeneralColors.whiteColor),
+                                  color: GeneralColors.whiteColor.withOpacity(0.5),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "Үгүй",
+                                    style: GeneralTextStyles.titleText(
+                                      context,
+                                      fontSize: 14,
+                                      textColor: GeneralColors.whiteColor,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -220,7 +224,7 @@ class _BookingOrderPageState extends State<BookingOrderPage> {
               Expanded(
                 child: TimePlanner(
                   startHour: 9,
-                  endHour: 18,
+                  endHour: 23,
                   setTimeOnAxis: true,
                   use24HourFormat: true,
                   currentTimeAnimation: false,

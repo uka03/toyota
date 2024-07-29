@@ -219,9 +219,9 @@ class _BookingPageState extends State<BookingPage> {
                       hintText: "Жишээ: 6 сарын өмнө сервест орсон",
                       border: OutlineInputBorder(
                         borderSide: BorderSide.none,
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                       ),
-                      fillColor: GeneralColors.grayInputColor,
+                      fillColor: GeneralColors.grayBGColor,
                       filled: true,
                     ),
                   )

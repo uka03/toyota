@@ -74,19 +74,6 @@ class BannerItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Container(
-                        padding: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: GeneralColors.whiteColor,
-                              width: 4,
-                            ),
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          color: GeneralColors.whiteColor,
-                        ),
-                      )
                     ],
                   )
                 ],

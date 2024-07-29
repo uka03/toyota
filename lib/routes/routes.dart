@@ -7,6 +7,7 @@ import 'package:toyota/pages/booking/booking_order_page.dart';
 import 'package:toyota/pages/booking/booking_page.dart';
 import 'package:toyota/pages/booking/car_select_page.dart';
 import 'package:toyota/pages/booking/history_page.dart';
+import 'package:toyota/pages/booking/web_viewer.dart';
 import 'package:toyota/pages/car/car_dealers.dart';
 import 'package:toyota/pages/car/car_page.dart';
 import 'package:toyota/pages/car/car_categories.dart';
@@ -41,4 +42,5 @@ final Map<String, Widget Function(BuildContext)> routes = {
   QaPage.routeName: (context) => QaPage(),
   Contact.routeName: (context) => Contact(),
   SplashScreen.routeName: (context) => SplashScreen(),
+  WebViewer.routeName: (context) => WebViewer(),
 };

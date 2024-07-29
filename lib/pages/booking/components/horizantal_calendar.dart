@@ -42,7 +42,7 @@ class HorintalCalendar extends StatelessWidget {
     }
 
     return SizedBox(
-      height: 90,
+      height: 120,
       child: ListView.separated(
         itemCount: itemCount ?? 14,
         scrollDirection: Axis.horizontal,
@@ -55,29 +55,29 @@ class HorintalCalendar extends StatelessWidget {
               onDateSelected(date);
             },
             child: Container(
-              width: 80,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
+              width: 90,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 14),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: isSelected ? GeneralColors.primaryColor : GeneralColors.blackColor,
+                  color: isSelected ? GeneralColors.primaryColor : Color(0xffF1F5F9),
                 ),
-                color: isSelected ? GeneralColors.primaryColor : GeneralColors.whiteColor,
+                color: isSelected ? GeneralColors.whiteColor : Color(0xffF1F5F9),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Text(
-                    getWeekDay(date.weekday),
-                    style: GeneralTextStyles.bodyText(context, fontSize: 12, textColor: isSelected ? GeneralColors.whiteColor : GeneralColors.blackColor),
-                  ),
-                  Text(
                     "${date.month}/${date.day}",
                     style: GeneralTextStyles.titleText(
                       context,
-                      fontSize: 24,
-                      textColor: isSelected ? GeneralColors.whiteColor : GeneralColors.blackColor,
+                      fontSize: 20,
+                      textColor: isSelected ? GeneralColors.primaryColor : GeneralColors.blackColor,
                     ),
+                  ),
+                  Text(
+                    getWeekDay(date.weekday),
+                    style: GeneralTextStyles.bodyText(context, fontSize: 14, textColor: isSelected ? GeneralColors.primaryColor : GeneralColors.blackColor),
                   ),
                 ],
               ),

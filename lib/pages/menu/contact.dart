@@ -134,12 +134,6 @@ class ContactPhoneItem extends StatelessWidget {
         padding: EdgeInsets.all(10),
         child: Row(
           children: [
-            Icon(
-              icon,
-              size: 35,
-              color: GeneralColors.primaryColor,
-            ),
-            HSpacer(),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

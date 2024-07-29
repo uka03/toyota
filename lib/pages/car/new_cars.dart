@@ -44,14 +44,17 @@ class _NewCarsState extends State<NewCars> {
 
   @override
   Widget build(BuildContext context) {
+    final response = ModalRoute.of(context)?.settings.arguments as String?;
     return Consumer<CarProvider>(builder: (context, provider, _) {
       return Scaffold(
         backgroundColor: GeneralColors.primaryBGColor,
         appBar: CustomAppbar(
-          title: Image.asset(
-            "assets/images/img_toyotaQ.png",
-            width: 150,
-          ),
+          title: response == "toyotaQ"
+              ? Image.asset(
+                  "assets/images/img_toyotaQ.png",
+                  width: 150,
+                )
+              : null,
         ),
         body: GeneralContainer(
           child: Column(

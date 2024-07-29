@@ -54,7 +54,7 @@ class ServicePage extends StatelessWidget {
             VSpacer(),
             ServiceItem(
               bgImagePath: "assets/images/img_tire.png",
-              title: "Дугуй болон сэлбэг",
+              title: "Нэмэлт бүтээгдэхүүн",
               onPressed: () {
                 Navigator.pushNamed(
                   context,
@@ -87,7 +87,7 @@ class ServiceItemWhite extends StatelessWidget {
       child: Container(
         height: 173,
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: Border.all(color: GeneralColors.grayColor),
           borderRadius: BorderRadius.circular(12),
         ),
         padding: EdgeInsets.all(20),
@@ -108,11 +108,13 @@ class ServiceItemWhite extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  decoration: BoxDecoration(color: GeneralColors.primaryColor, borderRadius: BorderRadius.circular(50)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
                   padding: EdgeInsets.all(5),
                   child: Icon(
                     Icons.arrow_forward_ios,
-                    color: GeneralColors.whiteColor,
+                    color: GeneralColors.grayColor,
                     size: 20,
                   ),
                 )
@@ -172,11 +174,13 @@ class ServiceItem extends StatelessWidget {
                 ),
               ),
               Container(
-                decoration: BoxDecoration(color: GeneralColors.whiteColor, borderRadius: BorderRadius.circular(50)),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                ),
                 padding: EdgeInsets.all(5),
                 child: Icon(
                   Icons.arrow_forward_ios,
-                  color: GeneralColors.primaryColor,
+                  color: GeneralColors.whiteColor,
                   size: 20,
                 ),
               )

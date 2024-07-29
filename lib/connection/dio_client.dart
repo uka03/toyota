@@ -5,6 +5,7 @@ import 'package:toyota/connection/model/car_response.dart';
 import 'package:toyota/connection/model/category_response.dart';
 import 'package:toyota/connection/model/default_response.dart';
 import 'package:toyota/connection/model/faq_response.dart';
+import 'package:toyota/connection/model/history_response.dart';
 import 'package:toyota/connection/model/login_response.dart';
 import 'package:toyota/connection/model/order_response.dart';
 import 'package:toyota/connection/model/part_response.dart';
@@ -336,6 +337,18 @@ class DioClient {
     } catch (e) {
       final dioFailure = e as DioException;
       final error = PartResponse.fromJson(dioFailure.response?.data);
+      return error;
+    }
+  }
+
+  Future<HistoryResponse?> getCarHistory(int? carId) async {
+    try {
+      final response = await _dioClient.get('$baseUrl/users/me/cars/$carId/histories');
+      final model = HistoryResponse.fromJson(response.data);
+      return model;
+    } catch (e) {
+      final dioFailure = e as DioException;
+      final error = HistoryResponse.fromJson(dioFailure.response?.data);
       return error;
     }
   }

@@ -32,7 +32,7 @@ class MenuItem extends StatelessWidget {
             Icon(
               icon,
               size: 26,
-              color: GeneralColors.primaryColor,
+              color: isLogout ? GeneralColors.primaryColor : GeneralColors.grayTextColor,
             ),
             HSpacer(),
             Expanded(

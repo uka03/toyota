@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toyota/connection/dio_client.dart';
 import 'package:toyota/connection/model/car_response.dart';
+import 'package:toyota/connection/model/history_response.dart';
 import 'package:toyota/connection/model/order_response.dart';
 import 'package:toyota/connection/model/service_response.dart';
 
@@ -10,6 +11,7 @@ class BookingProvider extends ChangeNotifier {
   List<ServiceResponseData> services = List.empty(growable: true);
   List<ServiceResponseData> selectedErvices = List.empty(growable: true);
   List<OrderResponseData> bookingOrder = List.empty(growable: true);
+  List<HistoryResponseData> historyOrder = List.empty(growable: true);
 
   Future<void> getCars() async {
     final response = await _dioClient.getUserCars();
@@ -40,6 +42,13 @@ class BookingProvider extends ChangeNotifier {
     final response = await _dioClient.getServiceOrderStatus(id, date);
 
     bookingOrder = response.data ?? [];
+    notifyListeners();
+  }
+
+  Future<void> getHistory(int? id) async {
+    final response = await _dioClient.getCarHistory(id);
+
+    historyOrder = response?.data ?? [];
     notifyListeners();
   }
 }
